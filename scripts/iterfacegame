@@ -1,0 +1,62 @@
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    let squares = document.querySelectorAll(".quadrado");
+
+    squares.forEach((element) => {
+
+        element.addEventListener('click', handliClick);
+
+    })
+
+})
+
+function handliClick(event) {
+
+    let square = event.target;
+    let position = square.id;
+
+    if (handeleMove(position)) {
+        setTimeout(() => {
+            alert(`O jogo acabou. ${playerTimer} é o vencedor`)
+
+        }, 100)
+    }
+    updateSqueres()
+}
+
+function updateSqueres() {
+
+    let squares = document.querySelectorAll(".quadrado");
+
+    squares.forEach((square) => {
+
+        let position = square.id;
+        let symbols = board[position];
+
+        if (symbols != "") {
+            square.innerHTML = ` <div class='${symbols}'></div> `
+        }
+
+    })
+}
+
+function reiniciar() {
+
+    let squares = document.querySelectorAll(".quadrado");
+
+    squares.forEach((square) => {
+
+        board = ["", "", "", "", "", "", "", "", ""];
+        playerTimer = 0;
+        gameOver = false;
+
+        let position = square.id;
+        let symbols = "";
+
+        square.innerHTML = ` <div class='${symbols}'></div> `
+
+    })
+
+
+}

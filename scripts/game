@@ -1,0 +1,77 @@
+let board = ["", "", "", "", "", "", "", "", ""];
+let playerTimer = 0;
+let gameOver = false;
+let symbols = ["o", "x"]
+let pontos = [0,0]
+
+console.log(pontos[0,1])
+console.log(pontos[1])
+
+function handeleMove(position) {
+
+    if (gameOver) {
+
+        return;
+    }
+
+    if (board[position] == '') {
+
+        board[position] = symbols[playerTimer]
+
+        gameOver = isWin();
+
+    
+
+        if (!gameOver) {
+
+            if (playerTimer == 0) {
+                playerTimer = 1;
+            }
+            else { playerTimer = 0 }
+        }
+    }
+
+    return gameOver;
+}
+function isWin() {
+
+    let estado = [
+
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+    ]
+
+    for (let i = 0; i < estado.length; i++) {
+
+        let seq = estado[i];
+
+        let post1 = seq[0];
+        let post2 = seq[1];
+        let post3 = seq[2];
+
+        if (board[post1] == board[post2] && board[post1] == board[post3] &&
+            board[post1] != "") {
+            pontos[playerTimer] += 1;
+             return true;
+        }
+       
+    }
+    
+
+}
+
+
+
+
+
+
+
+
+
+
